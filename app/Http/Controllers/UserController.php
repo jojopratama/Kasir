@@ -23,7 +23,7 @@ class UserController extends Controller
     {
       $title = 'Pengguna';
       $subtitle = 'Create';
-      return view('admin.user.create', compact('title', 'subtitle'));
+      return view('admin.users.create', compact('title', 'subtitle'));
     }
 
     public function store(Request $request)
@@ -105,15 +105,15 @@ class UserController extends Controller
         $currentUserId = Auth::id();
 
         if ($currentUserId == $id) {
-          return redirect()->route('user.index')->with('error', 'Anda tidak dapat menghapus akun sendiri.');
+          return redirect()->route('users.index')->with('error', 'Anda tidak dapat menghapus akun sendiri.');
         }
 
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+        return redirect()->route('users.index')->with('success', 'User berhasil dihapus');
       } catch (\Exception $e) {
-        return redirect()->route('user.index')->with('error', 'User gagal dihapus');
+        return redirect()->route('users.index')->with('error', 'User gagal dihapus');
       }
     }
 

@@ -34,7 +34,7 @@
               </div>
             @endif
             <h3 class="card-title">{{ $title }}</h3>
-            <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i> Tambah</a>
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i> Tambah</a>
           </div>
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -55,10 +55,10 @@
                     <td>{!! badge_role($user->role) !!}</td>
                     <td>{{ date_formater($user->created_at) }}</td>
                     <td>
-                      <form id="form-delete-user" action="{{ route('user.destroy', $user->id) }}" method="POST">
+                      <form id="form-delete-user" action="{{ route('users.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                       </form>
                   </tr>

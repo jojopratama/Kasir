@@ -501,7 +501,7 @@ $.extend( KeyTable.prototype, {
 		var out = [];
 
 		dt.columns( ':visible' ).every( function (i) {
-			if ( user.indexOf( i ) !== -1 ) {
+			if ( users.indexOf( i ) !== -1 ) {
 				out.push( i );
 			}
 		} );

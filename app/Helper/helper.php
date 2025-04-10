@@ -1,4 +1,6 @@
 <?php
+use Carbon\Carbon;
+
 
     if(!function_exists('rupiah')){
         function rupiah($angka){
@@ -18,4 +20,10 @@
           }
         }
       }
-      
+ 
+      if(!function_exists('date_formater')){
+        function date_formater($datetime, $timezone = 'Asia/Jakarta'){
+          return Carbon::parse($datetime, $timezone)
+              ->translatedFormat('d-m-Y H:i:s');
+        }
+      }

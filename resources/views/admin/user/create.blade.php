@@ -24,7 +24,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">{{$subtitle}} {{ $title }}</h3>
-          <a href="{{ route('user.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i> Kembali</a>
+          <a href="{{ route('users.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i> Kembali</a>
           @if ($errors->any())
             @foreach ($errors->all() as $error)
               <div class="alert alert-danger" role="alert">
@@ -100,7 +100,7 @@
               $('#form-create-user')[0].reset();
 
               if (result.isConfirmed) {
-                window.location.href = "{{ route('user.index') }}";
+                window.location.href = "{{ route('users.index') }}";
               }
             });
           },

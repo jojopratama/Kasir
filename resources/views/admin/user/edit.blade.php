@@ -31,7 +31,7 @@
               @endforeach
             @endif
             <h3 class="card-title">{{ $subtitle }} {{ $title }}</h3>
-            <a href="{{ route('user.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i> Kembali</a>
+            <a href="{{ route('users.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i> Kembali</a>
             <div id="error-container" style="display:none">
               <div class="alert alert-danger">
                 <p id="error-message"></p>
@@ -81,12 +81,11 @@
       
       $(document).on('submit', '#form-update-user', function(e) {
         e.preventDefault();
-
         var dataForm = $(this).serialize() + "&_token={{ csrf_token() }}" + "&id={{ $user->id }}";
 
         $.ajax({
           method: "PUT",
-          url: "{{ route('user.update', ':id') }}".replace(':id', {{ $user->id }}),
+          url: "{{ route('users.update', ':id') }}".replace(':id', {{ $user->id }}),
           data: dataForm,
           dataType: "json",
           success: function(data) {
@@ -97,7 +96,7 @@
               confirmButtonText: 'Ok'
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href = "{{ route('user.index') }}";
+                window.location.href = "{{ route('users.index') }}";
               }
             })
           },
