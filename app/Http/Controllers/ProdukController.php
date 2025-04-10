@@ -139,7 +139,7 @@ class ProdukController extends Controller
         if (is_array($id_produk)) {
             // Jika $id_produk adalah array, proses setiap ID dalam array
             foreach ($id_produk as $id) {
-                $id = (string) $id; // Pastikan ID adalah string 
+                $id = (string) $id; // Pastikan ID adalah string
                 $harga = Produk::find($id)->Harga;
                 $barcode = DNS1DFacade::getBarcodeHTML($id, 'C128'); // Membuat barcode untuk setiap ID
                 $barcodes[] = ['barcode' => $barcode, 'harga' => $harga]; // Simpan barcode ke array
@@ -152,7 +152,7 @@ class ProdukController extends Controller
             $barcodes[] = ['barcode' => $barcode, 'harga' => $harga]; // Simpan barcode ke array
         }
         $pdf = Pdf::loadView('admin.produk.cetaklabel', compact('barcodes'));
-        
+
         $file_path = storage_path('app/public/barcodes.pdf');
         $pdf->save($file_path);
 

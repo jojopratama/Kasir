@@ -13,7 +13,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="mb-2 row">
                     <div class="col-sm-6">
                         <h1 class="m-0">{{ $title }}</h1>
                     </div><!-- /.col -->
@@ -32,16 +32,6 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">{{ $title }}</h3>
-                        <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary float-right">Tambah</a>
-                        @if (session()->has('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                    </div>
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -55,13 +45,13 @@
                             </thead>
                             <tbody>
                                 @foreach ($produks as $produk)
-                                    <tr>
+                                <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $produk->NamaProduk }}</td>
                                         <td>{{ $produk->JumlahProduk }}</td>
                                         <td>{{ $produk->name }}</td>
                                         <td>{{ $produk->created_at->diffForHumans() }}</td>
-                                        
+
                                     </tr>
                                 @endforeach
                             </tbody>
