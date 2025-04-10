@@ -6,3 +6,16 @@
             return $hasil_rupiah;
         }
     }
+    if(!function_exists('badge_role')){
+        function badge_role($role)
+        {
+          if ($role === 'admin') {
+            return '<span class="badge badge-danger">Admin</span>';
+          } elseif ($role === 'petugas') {
+            return '<span class="badge badge-primary">Petugas</span>';
+          } else {
+            return '<span class="badge badge-secondary">Unknown</span>';
+          }
+        }
+      }
+      
