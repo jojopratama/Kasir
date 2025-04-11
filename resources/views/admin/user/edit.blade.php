@@ -40,6 +40,8 @@
           </div>
           <div class="card-body">
             <form id="form-update-user" method="POST">
+              @csrf
+              @method('PUT')
               <div class="form-group">
                 <label for="" class="">Nama Lengkap</label>
                 <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="form-control" placeholder="Masukan Nama Lengkap" required>

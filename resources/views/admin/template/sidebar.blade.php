@@ -4,7 +4,7 @@
     <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('') }}dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">KasirLaravel</span>
+        <span class="brand-text font-weight-light">Kasir Jojo</span>
     </a>
 
     <!-- Sidebar -->
@@ -38,29 +38,27 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->          
-               @if(Auth::user()->role != 'petugas')
-               <li class="nav-item">
-                   <a href="{{ route('users.index') }}" class="nav-link">
-                       <i class="nav-icon fas fa-user"></i><p>Pengguna</p>
-                   </a>
-               </li>
-           @endif           
+               with font-awesome or any other icon font library -->                   
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
+                @if(Auth::user()->role != 'petugas')
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i><p>Pengguna</p>
+                    </a>
+                </li>
+            @endif  
                 <li class="nav-item">
                     <a href="{{ route('produk.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Produk
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
@@ -69,7 +67,6 @@
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Penjualan
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
@@ -78,7 +75,6 @@
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Log Produk
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>

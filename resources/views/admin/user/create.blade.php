@@ -87,14 +87,14 @@
 
         $.ajax({
           method: "POST",
-          url: "{{ route('user.store') }}",
+          url: "{{ route('users.store') }}",
           data: dataForm,
           dataType: "json",
           success: function(data) {
             Swal.fire({
               icon: 'success',
               title: 'Success',
-              text: data.message || "Produk berhasil disimpan!",
+              text: data.message || "Data berhasil disimpan!",
               confirmButtonText: 'Ok'
             }).then((result) => {
               $('#form-create-user')[0].reset();

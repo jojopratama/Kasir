@@ -11,6 +11,8 @@ Route::get('/',[UserController::class,'login'])->name('login');
 Route::get('/register',[UserController::class,'register'])->name('register');
 Route::post('/register',[UserController::class,'registerStore'])->name('register.store');
 Route::post('/login',[UserController::class,'loginCheck'])->name('login.check');
+Route::put('users/{id}/edit',[UserController::class,'update'])->name('users.update');
+Route::post('users/create',[UserController::class,'create'])->name('users.create');
 Route::resource('users', UserController::class)->middleware(['cekRole:admin']);
 
 // dasboard

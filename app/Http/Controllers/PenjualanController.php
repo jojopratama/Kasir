@@ -112,21 +112,45 @@ class PenjualanController extends Controller
            'JumlahBayar' => 'required',
        ]);
 
-       $simpan = Bayar::create([
-           'PenjualanId' => $request->id,
-           'TanggalBayar' => date('Y-m-d H:i:s'),
-           'TotalBayar' => $request->JumlahBayar,
-           'Kembalian' => $request->Kembalian,
-           'StatusBayar' => 'Lunas',
-           'JenisBayar' => 'Cash',
-       ]);
+       // Menggunakan DB transaction untuk menjaga integritas data
+       try {
+           // Mulai transaksi database
+           \Illuminate\Support\Facades\DB::beginTransaction();
+           
+           // Simpan data pembayaran
+           $simpan = Bayar::create([
+               'PenjualanId' => $request->id,
+               'TanggalBayar' => date('Y-m-d H:i:s'),
+               'TotalBayar' => $request->JumlahBayar,
+               'Kembalian' => $request->Kembalian,
+               'StatusBayar' => 'Lunas',
+               'JenisBayar' => 'Cash',
+           ]);
 
-       if($simpan){
-        return response()->json(['status' => 200, 'message' => 'Pembayaran Berhasil']);
-       }else{
-        return response()->json(['status' => 500, 'message' => 'Pembayaran Gagal']);
+           // Ambil detail penjualan untuk mengurangi stok produk
+           $detailPenjualan = DetailPenjualan::where('PenjualanId', $request->id)->get();
+           
+           // Kurangi stok produk berdasarkan detail penjualan
+           foreach ($detailPenjualan as $detail) {
+               $produk = Produk::find($detail->ProdukId);
+               if ($produk) {
+                   // Kurangi stok produk
+                   $produk->Stok -= $detail->JumlahProduk;
+                   $produk->Users_id = Auth::user()->id; // Set user yang melakukan perubahan
+                   $produk->save();
+               }
+           }
+           
+           // Commit transaksi jika semua operasi berhasil
+           \Illuminate\Support\Facades\DB::commit();
+           
+           return response()->json(['status' => 200, 'message' => 'Pembayaran Berhasil']);
+       } catch (\Exception $e) {
+           // Rollback transaksi jika terjadi kesalahan
+           \Illuminate\Support\Facades\DB::rollBack();
+           
+           return response()->json(['status' => 500, 'message' => 'Pembayaran Gagal: ' . $e->getMessage()]);
        }
-
     }
 
     public function Nota($id)

@@ -23,7 +23,7 @@ class UserController extends Controller
     {
       $title = 'Pengguna';
       $subtitle = 'Create';
-      return view('admin.users.create', compact('title', 'subtitle'));
+      return view('admin.user.create', compact('title', 'subtitle'));
     }
 
     public function store(Request $request)
@@ -70,11 +70,12 @@ class UserController extends Controller
       return view('admin.user.edit', compact('title', 'subtitle', 'user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, string $id)
     {
+      $user = User::findOrFail($id);
       $validate = $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $user->id,
+        'email' => 'required|email',
         'password' => 'nullable|confirmed|string|min:8',
         'role' => 'required|in:admin,petugas',
       ],[
@@ -92,9 +93,9 @@ class UserController extends Controller
       ]);
 
       if ($simpan) {
-        return response()->json(['status' => 200, 'message' => 'User Berhasil Diubah']);
+        return redirect()->route('users.index')->with('success', 'User Berhasil Diperbarui');
       } else {
-        return response()->json(['status' => 500, 'message' => 'User Gagal Diubah']);
+        return redirect()->route('users.index')->with('error', 'Data gagal diperbarui');
       }
     }
 

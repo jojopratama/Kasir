@@ -90,15 +90,11 @@
                                             @if ($penjualan->StatusBayar == 'Lunas')
                                                 <a href="{{ route('penjualan.nota', $penjualan->id) }}" class="btn btn-success"  target="_blank">Nota</a>
                                             @else
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                    Bayar
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{route('penjualan.bayarCash', $penjualan->id)}}">Cash</a>
-                                                    <a class="dropdown-item" href="#">Transfer/Qris</a>
-                                                </div>
-                                                </div>
+                                            
+                                                
+                                                    <a class="btn btn-secondary" href="{{route('penjualan.bayarCash', $penjualan->id)}}">Bayar</a>
+                                                
+                                                
                                             @endif
                                             
                                         </td>
