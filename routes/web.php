@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
@@ -16,9 +17,7 @@ Route::post('users/create',[UserController::class,'create'])->name('users.create
 Route::resource('users', UserController::class)->middleware(['cekRole:admin']);
 
 // dasboard
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -33,5 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('penjualan/bayarCash',[PenjualanController::class,'bayarCashStore'])->name('penjualan.bayarCashStore');
     Route::get('penjualan/nota/{id}',[PenjualanController::class,'nota'])->name('penjualan.nota');
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 

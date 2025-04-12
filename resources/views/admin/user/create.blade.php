@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 
-@section('title', $subtitle . ' ' . $title).
+@section('title', $subtitle . ' ' . $title)
 
 @section('content')
 <div class="content-wrapper">
@@ -76,50 +76,46 @@
 @section('js')
 <script>
   $(() => {
-    $('#select2-role').select2({
-      theme: 'bootstrap4'
-    });
+    $('#select2-role').select2({ theme: 'bootstrap4' });
 
-    $(document).on('submit', '#form-create-user', function (e) {
-        e.preventDefault();
+    $('#form-create-user').on('submit', function (e) {
+      e.preventDefault();
 
-        var dataForm = $(this).serialize();
+      const form = $(this);
+      const formData = form.serialize();
 
-        $.ajax({
-          method: "POST",
-          url: "{{ route('users.store') }}",
-          data: dataForm,
-          dataType: "json",
-          success: function(data) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message || "Data berhasil disimpan!",
-              confirmButtonText: 'Ok'
-            }).then((result) => {
-              $('#form-create-user')[0].reset();
-
-              if (result.isConfirmed) {
-                window.location.href = "{{ route('users.index') }}";
-              }
-            });
-          },
-          error: function(xhr) {
-            let errorMessages = "Terjadi kesalahan saat menyimpan user.";
-
-            if (xhr.responseJSON?.errors) {
-              errorMessages = Object.values(xhr.responseJSON.errors)
-                .flat()
-                .join("\n");
+      $.ajax({
+        url: "{{ route('users.store') }}",
+        method: "POST",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: response.message || "Data berhasil disimpan!",
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "{{ route('users.index') }}";
             }
+          });
+        },
+        error: function(xhr) {
+          let errorText = "Terjadi kesalahan saat menyimpan data.";
 
-            Swal.fire({
-              icon: 'error',
-              title: 'Whoops!',
-              text: errorMessages,
-              confirmButtonText: 'OK'
-            });
+          if (xhr.responseJSON?.errors) {
+            const errors = Object.values(xhr.responseJSON.errors).flat();
+            errorText = errors.join('<br>');
           }
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            html: errorText,
+            confirmButtonText: 'OK'
+          });
+        }
       });
     });
   });

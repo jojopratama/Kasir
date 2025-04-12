@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 
-@section('title', $subtitle . ' ' . $title)
+@section('title', "$subtitle $title")
 
 @section('content')
   <div class="content-wrapper">
@@ -19,31 +19,33 @@
         </div>
       </div>
     </div>
+
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-          <div class="card-header">
-            @if (session()->has('success'))
-              <div class="alert alert-success">
-                {{ session('success') }}
-              </div>
-            @endif
-            @if (session()->has('error'))
-              <div class="alert alert-danger">
-                {{ session('error') }}
-              </div>
-            @endif
-            <h3 class="card-title">{{ $title }}</h3>
-            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i> Tambah</a>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title m-0">{{ $title }}</h3>
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">
+              <i class="fas fa-plus"></i> Tambah
+            </a>
           </div>
+
           <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            @if (session('success'))
+              <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session('error'))
+              <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            <table id="userTable" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>Nama</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>createdAt</th>
+                  <th>Dibuat</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -55,16 +57,22 @@
                     <td>{!! badge_role($user->role) !!}</td>
                     <td>{{ date_formater($user->created_at) }}</td>
                     <td>
-                      <form id="form-delete-user" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                      <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline-block form-delete-user">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
                       </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
+
           </div>
         </div>
       </div>
@@ -74,50 +82,50 @@
 
 @section('js')
   <script>
-    $(() => {
-      let dt_buttons = [{
+    $(function () {
+      let dt_buttons = [
+        {
           extend: 'excelHtml5',
-          text: '<i class="far fa-file-excel"></i> Export Ke Excel',
-          titleAttr: 'Excel',
-          type: 'button',
+          text: '<i class="far fa-file-excel"></i> Export Excel',
+          titleAttr: 'Export ke Excel',
         },
         {
           extend: 'print',
-          text: '<i class="fas fa-print"></i>',
-          titleAttr: 'Print',
-          type: 'button',
+          text: '<i class="fas fa-print"></i> Print',
+          titleAttr: 'Print tabel',
         },
         {
           extend: 'colvis',
-          text: 'Column',
-          titleAttr: 'Column',
-          type: 'button',
-        },
-      ]
+          text: 'Tampilan Kolom',
+          titleAttr: 'Pilih Kolom',
+        }
+      ];
 
-      $("#example1").DataTable({
-        language: {
-          search: `<i class="fas fa-search"></i>`
-        },
-        order: [[3, 'asc']],
+      $("#userTable").DataTable({
         responsive: true,
         lengthChange: false,
         autoWidth: false,
-        buttons: dt_buttons
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        order: [[3, 'desc']],
+        buttons: dt_buttons,
+        language: {
+          search: '<i class="fas fa-search"></i>',
+          searchPlaceholder: 'Cari data...'
+        }
+      }).buttons().container().appendTo('#userTable_wrapper .col-md-6:eq(0)');
 
-      $(document).on('submit', '#form-delete-user', function(e) {
+      $(document).on('submit', '.form-delete-user', function (e) {
         e.preventDefault();
-        let form = this;
+        const form = this;
 
         Swal.fire({
-          title: 'Apakah Anda Yakin?',
-          text: "Data tidak akan bisa kembali",
+          title: 'Yakin ingin menghapus?',
+          text: 'Data yang dihapus tidak bisa dikembalikan!',
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Ya, Hapus Data Ini!'
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Ya, hapus!',
+          cancelButtonText: 'Batal'
         }).then((result) => {
           if (result.isConfirmed) {
             form.submit();

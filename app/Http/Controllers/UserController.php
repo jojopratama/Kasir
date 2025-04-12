@@ -27,29 +27,31 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-      $validate = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|unique:users,email',
-        'password' => 'required|confirmed|string|min:8',
-        'role' => 'required|in:admin,petugas',
-      ], [
-        'name.required' => 'Kolom nama lengkap harus diisi.',
-        'required' => 'Kolom :attribute harus diisi.',
-        'email.unique' => 'Email sudah digunakan, silahkan gunakan alamat email lain.',
-        'confirmed' => 'Password dan Konfirmasi Password tidak cocok.',
-      ]);
+{
+  $validate = $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|string|email|unique:users,email',
+    'password' => 'required|confirmed|string|min:8',
+    'role' => 'required|in:admin,petugas',
+  ]);
 
-      $validate['password'] = bcrypt($validate['password']);
+  try {
+    $validate['password'] = bcrypt($validate['password']);
+    $user = User::create($validate);
 
-      $simpan = User::create($validate);
+    return response()->json([
+      'status' => 200,
+      'message' => 'User berhasil disimpan!',
+    ]);
+  } catch (\Exception $e) {
+    return response()->json([
+      'status' => 500,
+      'message' => 'Terjadi kesalahan saat menyimpan data.',
+      'error' => $e->getMessage(), // << Tambahkan ini untuk debugging
+    ]);
+  }
+}
 
-      if ($simpan) {
-        return response()->json(['status' => 200, 'message' => 'User Berhasil Ditambahkan']);
-      } else {
-        return response()->json(['status' => 500, 'message' => 'User Gagal Ditambahkan']);
-      }
-    }
 
     /**
      * Display the specified resource.
