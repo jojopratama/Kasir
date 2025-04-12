@@ -17,7 +17,7 @@ class PenjualanController extends Controller
     public function index()
     {
         $title = 'Penjualan';
-        $subtitle = 'Index';
+        $subtitle = 'Riwayat';
         $penjualans = Penjualan::join('users', 'penjualans.UsersId', '=', 'users.id')
             ->Leftjoin('bayars', 'penjualans.id', '=', 'bayars.PenjualanId')
             ->select('penjualans.*', 'users.name','bayars.StatusBayar')->get();
@@ -30,7 +30,7 @@ class PenjualanController extends Controller
     public function create()
     {
         $title = 'Penjualan';
-        $subtitle = 'Create';
+        $subtitle = 'Buat';
         $produks = Produk::where('Stok', '>', 0)->get();
         return view('admin.penjualan.create', compact('title', 'subtitle', 'produks'));
     }

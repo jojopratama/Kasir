@@ -18,7 +18,7 @@ class ProdukController extends Controller
     public function index()
     {
         $title = 'Produk';
-        $subtitle = 'Index';
+        $subtitle = 'Daftar';
         $produks = Produk::all();
         return view('admin.produk.index', compact('title', 'subtitle', 'produks'));
     }
@@ -29,7 +29,7 @@ class ProdukController extends Controller
     public function create()
     {
         $title = 'Produk';
-        $subtitle = 'Create';
+        $subtitle = 'Tambah';
         return view('admin.produk.create', compact('title', 'subtitle'));
     }
 
@@ -124,7 +124,7 @@ class ProdukController extends Controller
     public function logproduk()
     {
         $title = 'Produk';
-        $subtitle = 'Log Produk';
+        $subtitle = 'Log';
         $produks = LogStok::join('produks', 'log_stoks.ProdukId', '=', 'produks.id')
             ->join('users', 'log_stoks.UsersId', '=', 'users.id')
             ->select('log_stoks.JumlahProduk', 'log_stoks.created_at', 'produks.NamaProduk', 'users.name')->get();

@@ -19,8 +19,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                         <li class="breadcrumb-item active">{{ $subtitle }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">{{ $title }}</h3>
-                    <a href="{{ route('penjualan.index') }}" class="btn btn-sm btn-warning float-right">Kembali</a>
+                    <a href="{{ route('penjualan.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i>Kembali</a>
                 </div>
                 <form action="{{ route('penjualan.store') }}" method="post">
                     @csrf

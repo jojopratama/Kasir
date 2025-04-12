@@ -19,8 +19,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">{{ $subtitle }}</li>
+                            <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -50,7 +50,7 @@
                                         <td>{{ $produk->NamaProduk }}</td>
                                         <td>{{ $produk->JumlahProduk }}</td>
                                         <td>{{ $produk->name }}</td>
-                                        <td>{{ $produk->created_at->diffForHumans() }}</td>
+                                        <td>{{ date_formater($produk->created_at) }}</td>
 
                                     </tr>
                                 @endforeach

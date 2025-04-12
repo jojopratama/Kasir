@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     public function index()
     {
-      $title = 'Pengguna';
-      $subtitle = 'Index';
+      $title = 'Akun';
+      $subtitle = 'Manajemen';
       $users = User::select('id', 'name', 'email', 'role', 'created_at')->get();
       return view('admin.user.index', compact('title', 'subtitle', 'users'));
     }
@@ -21,8 +21,8 @@ class UserController extends Controller
      */
     public function create()
     {
-      $title = 'Pengguna';
-      $subtitle = 'Create';
+      $title = 'Akun';
+      $subtitle = 'Buat';
       return view('admin.user.create', compact('title', 'subtitle'));
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
       $user = User::findOrFail($id);
-      $title = 'Pengguna';
+      $title = 'Akun';
       $subtitle = 'Edit';
       return view('admin.user.edit', compact('title', 'subtitle', 'user'));
     }

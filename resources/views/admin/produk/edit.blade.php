@@ -16,8 +16,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">{{ $subtitle }}</li>
+                            <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{ $title }}</h3>
-                        <a href="{{ route('produk.index') }}" class="btn btn-sm btn-warning float-right">Kembali</a>
+                        <a href="{{ route('produk.index') }}" class="btn btn-sm btn-warning float-right"><i class="fas fa-arrow-left"></i> Kembali</a>
                         @if ($errors->any())
                             @foreach ($errors->all() as $error)
                                 <div class="alert alert-danger" role="alert">
@@ -53,7 +53,7 @@
                             <input type="number" name="Harga" value="{{ $produk->Harga }}" class="form-control" required>
                             <label for="">Stok</label>
                             <input type="number" name="Stok" value="{{ $produk->Stok }}" class="form-control" required>
-                            <button class="btn btn-warning mt-2" type="submit">Update</button>
+                            <button class="btn btn-warning" type="submit"><i class="fas fa-save"></i>Update</button>
                         </form>
                     </div>
                 </div>

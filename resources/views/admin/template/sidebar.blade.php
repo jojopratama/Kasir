@@ -50,7 +50,7 @@
                 @if(Auth::user()->role != 'petugas')
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i><p>Pengguna</p>
+                        <i class="nav-icon fas fa-user"></i><p>Manajemen Akun</p>
                     </a>
                 </li>
             @endif  

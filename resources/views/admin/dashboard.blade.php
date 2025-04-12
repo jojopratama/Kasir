@@ -1,6 +1,7 @@
 @extends('admin.template.master')
 
 
+
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -32,13 +33,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-               
-                <h3>Rp {{ number_format($totalPenjualan, 0, ',', '.') }}</h3>
+                <h3>{{ $totalPenjualan }}</h3>
+
                 <p>Total Penjualan</p>
               </div>
-              
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-bag"></i>
               </div>
             </div>
           </div>
@@ -47,15 +47,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{ $totalProduk }}</h3>
+                <h3>Rp{{ $weeklyIncome }}<sup style="font-size: 20px">,-</sup></h3>
 
-                <p>Total Produk</p>
+                <p>Total Pendapatan Mingguan</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-stats-bars"></i>
               </div>
-              
-              
             </div>
           </div>
           <!-- ./col -->
@@ -63,14 +61,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{ $totalPengguna}}</h3>
+                <h3>{{ $totalPetugasKasir }}</h3>
 
-                <p>Total Pengguna</p>
+                <p>Total Petugas Kasir</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              
             </div>
           </div>
           <!-- ./col -->
@@ -78,25 +75,18 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ $totalStok}}</h3>
+                <h3>{{ $totalProduk }}</h3>
 
-                <p>Total Stok</p>
+                <p>Total Produk</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-            
             </div>
           </div>
-          <!-- ./col -->
         </div>
-        <!-- /.row -->
-       
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-      
 @endsection

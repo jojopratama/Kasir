@@ -19,8 +19,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
               <li class="breadcrumb-item active">{{ $subtitle }}</li>
+              <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
             </ol>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title m-0">{{ $title }}</h3>
             <a href="{{ route('penjualan.create') }}" class="btn btn-sm btn-primary">
-              <i class="fas fa-plus"></i> Tambah
+              <i class="fas fa-plus"></i> Tambah Penjualan
             </a>
           </div>
 

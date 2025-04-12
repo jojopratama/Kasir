@@ -6,10 +6,10 @@
             <!-- /.login-logo -->
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="../../index2.html" class="h1"><b>Kasir</b>Jojo</a>
+                    <a href="../../index2.html" class="h1"><b>KasirKu</b></a>
                 </div>
                 <div class="card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
+                    <p class="login-box-msg">Masuk dengan menggunakan Akun anda</p>
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -44,17 +44,12 @@
                                 
                             </div>
                             <!-- /.col -->
-                            <div class="col-4">
+                            <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                             </div>
                             <!-- /.col -->
                         </div>
                     </form>
-
-
-                    <p class="mb-0">
-                        <a href="{{ route('register') }}" class="text-center">daftar sebagai petugas</a>
-                    </p>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -62,3 +57,4 @@
         </div>
         <!-- /.login-box -->
     @endsection
+            

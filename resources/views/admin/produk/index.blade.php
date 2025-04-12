@@ -18,8 +18,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                         <li class="breadcrumb-item active">{{ $subtitle }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ $title }}</a></li>
                     </ol>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                             <i class="fas fa-print"></i> Cetak Label
                         </button>
                         <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-plus"></i> Tambah
+                            <i class="fas fa-plus"></i> Tambah Produk
                         </a>
                     </div>
                 </div>
