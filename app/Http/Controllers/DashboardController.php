@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Produk;
@@ -14,6 +15,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $title = 'Dashboard';
+        $subtitle = Auth::user()->role === 'admin' ? 'Admin' : 'Petugas';
+
         $totalPenjualan = Penjualan::count();
         $totalPetugasKasir = User::where('role', 'petugas')->count();
         $totalProduk = Produk::count();
@@ -28,13 +32,15 @@ class DashboardController extends Controller
 
         if (Auth::user()->role === "admin") {
             return view('admin.dashboard', compact(
+                'title',
+                'subtitle',
                 'totalPenjualan',
                 'weeklyIncome',
                 'totalPetugasKasir',
                 'totalProduk'
             ));
-        } else if(Auth::user()->role === "petugas") {
-            return view('kasir.dashboard');
+        } else if (Auth::user()->role === "petugas") {
+            return view('kasir.dashboard', compact('title', 'subtitle'));
         }
     }
 }

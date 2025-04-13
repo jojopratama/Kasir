@@ -1,5 +1,7 @@
 @extends('admin.template.master')
 
+@section('title', "$subtitle $title")
+
 @section('css')
 @endsection
 

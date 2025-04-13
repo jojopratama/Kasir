@@ -41,7 +41,7 @@ class UserController extends Controller
 
     return response()->json([
       'status' => 200,
-      'message' => 'User berhasil disimpan!',
+      'message' => 'Akun berhasil disimpan!',
     ]);
   } catch (\Exception $e) {
     return response()->json([
@@ -95,7 +95,7 @@ class UserController extends Controller
       ]);
 
       if ($simpan) {
-        return redirect()->route('users.index')->with('success', 'User Berhasil Diperbarui');
+        return redirect()->route('users.index')->with('success', 'Akun berhasil diperbarui');
       } else {
         return redirect()->route('users.index')->with('error', 'Data gagal diperbarui');
       }
@@ -114,9 +114,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User berhasil dihapus');
+        return redirect()->route('users.index')->with('success', 'Akun berhasil dihapus');
       } catch (\Exception $e) {
-        return redirect()->route('users.index')->with('error', 'User gagal dihapus');
+        return redirect()->route('users.index')->with('error', 'Akun gagal dihapus');
       }
     }
 

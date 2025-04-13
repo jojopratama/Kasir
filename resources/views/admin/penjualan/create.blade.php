@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 
-@section('title', $title)
+@section('title', "$subtitle $title")
 
 @section('css')
     <!-- DataTables -->

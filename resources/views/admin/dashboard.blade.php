@@ -1,5 +1,6 @@
 @extends('admin.template.master')
 
+@section('title', "$title")
 
 
 @section('content')

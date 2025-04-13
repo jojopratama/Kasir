@@ -20,7 +20,7 @@ table {
 
 <body>
     <H1>Nota Toko Laravel</H1>
-    <h5>Alamat SMK TI PELITA NUSANTARA</h5>
+    <h5>Alamat:SMK Angkasa 1 Margahayu</h5>
 
     <table width="100%" >
         <thead>

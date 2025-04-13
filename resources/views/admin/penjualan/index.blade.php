@@ -55,7 +55,7 @@
               <tbody>
                 @foreach ($penjualans as $penjualan)
                   <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td></td> {{-- Kolom nomor diisi otomatis oleh DataTables --}}
                     <td>{{ $penjualan->TanggalPenjualan }}</td>
                     <td>{{ rupiah($penjualan->TotalHarga) }}</td>
                     <td>{{ $penjualan->name }}</td>
@@ -117,17 +117,33 @@
         }
       ];
 
-      $("#penjualanTable").DataTable({
+      let table = $("#penjualanTable").DataTable({
         responsive: true,
         lengthChange: false,
         autoWidth: false,
         order: [[1, 'desc']],
         buttons: dt_buttons,
+        columnDefs: [
+          {
+            targets: 0,
+            searchable: false,
+            orderable: false,
+          }
+        ],
         language: {
           search: '<i class="fas fa-search"></i>',
           searchPlaceholder: 'Cari data...'
         }
-      }).buttons().container().appendTo('#penjualanTable_wrapper .col-md-6:eq(0)');
+      });
+
+      // Otomatis isi kolom nomor urut
+      table.on('order.dt search.dt draw.dt', function () {
+        table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+          cell.innerHTML = i + 1;
+        });
+      }).draw();
+
+      table.buttons().container().appendTo('#penjualanTable_wrapper .col-md-6:eq(0)');
     });
   </script>
 @endsection
