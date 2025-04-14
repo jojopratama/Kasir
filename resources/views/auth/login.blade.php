@@ -7,7 +7,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary shadow-lg rounded-3">
             <div class="card-header text-center bg-white border-0">
-                <a href="#" class="h1" style="font-weight: bold; color: #007bff;"><b>Kasir</b>Ku</a>
+                <a href="#" class="h1" style="font-weight: bold; color: #007bff;"><b>Kasir</b>Jojo</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Masuk dengan menggunakan akun anda</p>

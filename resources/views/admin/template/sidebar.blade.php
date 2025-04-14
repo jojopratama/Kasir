@@ -12,7 +12,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('') }}dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                <img src="{{ asset('build/assets/ganteng.jpeg') }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
@@ -41,7 +41,7 @@
                with font-awesome or any other icon font library -->                   
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-columns"></i>
                         <p>
                             Dashboard
                         </p>
@@ -56,7 +56,7 @@
             @endif  
                 <li class="nav-item">
                     <a href="{{ route('produk.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-box"></i>
                         <p>
                             Produk
                         </p>
@@ -64,7 +64,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('penjualan.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Penjualan
                         </p>
@@ -72,7 +72,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('produk.logproduk') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-receipt"></i>
                         <p>
                             Log Produk
                         </p>
